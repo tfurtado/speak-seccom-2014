@@ -28,12 +28,12 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide class="logoslide nobackground">
     <article class="flexbox vcenter">
-      <span><img src="images/google_developers_logo.png"></span>
+      <span><img src="images/meritt_logo.png"></span>
     </article>
   </slide>
 
   <slide class="title-slide segue nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
     <hgroup class="auto-fadein">
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
@@ -95,7 +95,7 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Testes de unidade</h2>
     </hgroup>
@@ -107,7 +107,76 @@ URL: https://code.google.com/p/io-2012-slides
       <h3>O quê?</h3>
     </hgroup>
     <article>
+      <ul>
+        <li><strong>Criados por programadores</strong></li>
+        <li>Escritos na mesma linguagem do produto</li>
+      </ul>
+    </article>
+  </slide>
 
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>O quê?</h3>
+    </hgroup>
+    <article>
+      <p>Pequenos trechos de código</p>
+      <pre class="prettyprint" data-lang="php">
+try {
+    $test = new CalculatorTest();
+    $test->sumShouldReturnTheSumOfTwoNumbers();
+    /* more tests */
+} catch (/*...*/) {
+    echo "Something wrong is not right... ¯\_(ツ)_/¯";
+}
+
+echo "All tests passed! \o/";</pre>
+      <p>Criados por programadores para programadores!</p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>O quê?</h3>
+    </hgroup>
+    <article>
+      <p>Escritos na mesma linguagem do produto</p>
+      <pre class="prettyprint" data-lang="php">
+class CalculatorTest
+{
+    public function sumShouldReturnTheSumOfTwoNumbers()
+    {
+        $calculator = new Calculator();
+        $result = $calculator->sum(1, 2);
+        if ($result !== 3) {
+            throw new Exception(/*...*/);
+        }
+
+        return true;
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>O quê?</h3>
+    </hgroup>
+    <article>
+      <p>Com o objetivo de testar a menor unidade do software (um método <strike>ou função</strike>)</p>
+      <pre class="prettyprint" data-lang="php">
+class Calculator
+{
+    public function sum($first, $second) {
+        if (! (is_integer($first) && is_integer($second)) {
+            throw new InvalidArgumentException(/*...*/);
+        }
+
+        return $first + $second;
+    }
+}</pre>
     </article>
   </slide>
 
@@ -127,7 +196,8 @@ URL: https://code.google.com/p/io-2012-slides
       <h3>Quando?</h3>
     </hgroup>
     <article>
-
+      <p><b>SEMPRE!</b></p>
+      <p>Simples assim!</p>
     </article>
   </slide>
 
@@ -135,6 +205,8 @@ URL: https://code.google.com/p/io-2012-slides
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
+      - frameworks de teste
+      - mocks, stubs, etc.
     </hgroup>
     <article>
 
@@ -142,7 +214,7 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Automação de testes</h2>
     </hgroup>
@@ -158,7 +230,7 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Test-driven development (TDD)</h2>
     </hgroup>
@@ -174,7 +246,7 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Cobertura de testes</h2>
     </hgroup>
@@ -190,14 +262,14 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
       <h2>Considerações finais</h2>
     </hgroup>
   </slide>
 
   <slide class="thank-you-slide segue nobackground">
-    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <aside class="gdbar right"><img src="images/meritt_icon_128.png"></aside>
     <article class="flexbox vleft auto-fadein">
       <h2>&lt;Thank You!&gt;</h2>
       <p>Important contact information goes here.</p>
@@ -207,9 +279,9 @@ URL: https://code.google.com/p/io-2012-slides
     </p>
   </slide>
 
-  <slide class="logoslide dark nobackground">
+  <slide class="logoslide nobackground">
     <article class="flexbox vcenter">
-      <span><img src="images/google_developers_logo_white.png"></span>
+      <span><img src="images/meritt_logo.png"></span>
     </article>
   </slide>
 
