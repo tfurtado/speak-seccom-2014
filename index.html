@@ -101,6 +101,12 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
   </slide>
 
+  <slide class="fill nobackground" style="background-image: url(images/what.gif)">
+    <article>
+      <h2 class="full-image-caption">WHAT?</h2>
+    </article>
+  </slide>
+
   <slide>
     <hgroup>
       <h2>Testes de unidade</h2>
@@ -108,8 +114,9 @@ URL: https://code.google.com/p/io-2012-slides
     </hgroup>
     <article>
       <ul>
-        <li><strong>Criados por programadores</strong></li>
+        <li>Pequenos trechos de código</li>
         <li>Escritos na mesma linguagem do produto</li>
+        <li>Com o objetivo de testar a menor unidade do software</li>
       </ul>
     </article>
   </slide>
@@ -117,65 +124,34 @@ URL: https://code.google.com/p/io-2012-slides
   <slide>
     <hgroup>
       <h2>Testes de unidade</h2>
-      <h3>O quê?</h3>
     </hgroup>
-    <article>
-      <p>Pequenos trechos de código</p>
+    <article class="smaller">
+      <p>
+        Pequenos trechos de código (por programadores <b>para programadores</b>!),
+        escritos na mesma linguagem do produto, com o objetivo de testar a menor unidade
+        do software (um método <span class="removed">ou função</span>)
+      </p>
       <pre class="prettyprint" data-lang="php">
-try {
-    $test = new CalculatorTest();
-    $test->sumShouldReturnTheSumOfTwoNumbers();
-    /* more tests */
-} catch (/*...*/) {
-    echo "Something wrong is not right... ¯\_(ツ)_/¯";
+class Calculator {
+    <b>public function sum($first, $second) {
+        return $first + $second;
+    }</b>
+
+    public function subtract($first, $second) {
+        /* ... */
 }
 
-echo "All tests passed! \o/";</pre>
-      <p>Criados por programadores para programadores!</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Testes de unidade</h2>
-      <h3>O quê?</h3>
-    </hgroup>
-    <article>
-      <p>Escritos na mesma linguagem do produto</p>
-      <pre class="prettyprint" data-lang="php">
-class CalculatorTest
-{
-    public function sumShouldReturnTheSumOfTwoNumbers()
-    {
+class CalculatorTest {
+    <b>public function sumShouldReturnTheSumOfTwoNumbers() {
         $calculator = new Calculator();
         $result = $calculator->sum(1, 2);
         if ($result !== 3) {
-            throw new Exception(/*...*/);
+            throw new Exception("Something wrong is not right... ¯\_(ツ)_/¯");
         }
+    }</b>
 
-        return true;
-    }
-}</pre>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Testes de unidade</h2>
-      <h3>O quê?</h3>
-    </hgroup>
-    <article>
-      <p>Com o objetivo de testar a menor unidade do software (um método <strike>ou função</strike>)</p>
-      <pre class="prettyprint" data-lang="php">
-class Calculator
-{
-    public function sum($first, $second) {
-        if (! (is_integer($first) && is_integer($second)) {
-            throw new InvalidArgumentException(/*...*/);
-        }
-
-        return $first + $second;
-    }
+    public function subtractShouldReturnTheDifferenceOfTwoNumbers() {
+        /* ... */
 }</pre>
     </article>
   </slide>
