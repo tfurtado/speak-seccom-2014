@@ -163,16 +163,53 @@ class CalculatorTest {
     </hgroup>
     <article>
       <ul>
+        <li>Software livre de defeitos <b>deveria ser sempre</b> entregue</li>
         <li>
-          Software correto é o <b>mínimo</b> aceitável
+          Mas...
           <ul>
-            <li class="build"><span>mas...</span> <span>~stuff~ happens</span></li>
+            <li>software é muito complexo</li>
+            <li>software é feito por pessoas <span>(e pessoas são imperfeitas! ><")</span></li>
           </ul>
+          <img src="images/shit-happens.jpg" alt="s**t happens" title="s**t happens">
         </li>
-
-        <li>Garantir a corretude dos componentes, individualmente</li>
-        <li>Exercitar a capacidade de análise</li>
       </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/meritt_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        O todo é maior do que a simples soma das suas partes.
+      </q>
+      <div class="author">
+        Aristóteles
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Por quê?</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Garantir a corretude das partes</li>
+        <li>Ampliar a capacidade de análise do todo</li>
+      </ul>
+      <pre class="prettyprint" data-lang="php">
+public function canBeArrested($age) {
+    /* ... */
+}
+
+<b>$this->canBeArrested(-1);</b>
+<b>$this->canBeArrested(0);</b>
+$this->canBeArrested(17);
+$this->canBeArrested(18);
+$this->canBeArrested(19);
+<b>$this->canBeArrested(150);</b>
+<b>$this->canBeArrested("rukm");</b></pre>
     </article>
   </slide>
 
