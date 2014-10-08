@@ -170,7 +170,7 @@ class CalculatorTest {
             <li>software é muito complexo</li>
             <li>software é feito por pessoas <span>(e pessoas são imperfeitas! ><")</span></li>
           </ul>
-          <img src="images/shit-happens.jpg" alt="s**t happens" title="s**t happens">
+          <p class="centered"><img src="images/shit-happens.jpg" alt="s**t happens" title="s**t happens"></p>
         </li>
       </ul>
     </article>
@@ -195,21 +195,22 @@ class CalculatorTest {
     </hgroup>
     <article>
       <ul>
-        <li>Garantir a corretude das partes</li>
+        <li>Garantir a correção das partes</li>
         <li>Ampliar a capacidade de análise do todo</li>
       </ul>
       <pre class="prettyprint" data-lang="php">
-public function canBeArrested($age) {
-    /* ... */
+class Person {
+    public function __construct($age) { /*...*/ }
+    public function canBeArrested() { /*...*/ }
 }
 
-<b>$this->canBeArrested(-1);</b>
-<b>$this->canBeArrested(0);</b>
-$this->canBeArrested(17);
-$this->canBeArrested(18);
-$this->canBeArrested(19);
-<b>$this->canBeArrested(150);</b>
-<b>$this->canBeArrested("rukm");</b></pre>
+<b>(new Person(-1))->canBeArrested();</b>
+<b>(new Person(0))->canBeArrested();</b>
+(new Person(17))->canBeArrested();
+(new Person(18))->canBeArrested();
+(new Person(19))->canBeArrested();
+<b>(new Person(150))->canBeArrested();</b>
+<b>(new Person("RUKM?"))->canBeArrested();</b></pre>
     </article>
   </slide>
 
