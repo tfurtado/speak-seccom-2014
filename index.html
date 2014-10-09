@@ -229,11 +229,61 @@ class Person {
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
-      - frameworks de teste
-      - mocks, stubs, etc.
     </hgroup>
     <article>
+      <p>Manualmente</p>
+      <pre class="prettyprint build" data-lang="php">
+<span>public function sum($a, $b) {</span>
+    return <b>$a + 0;</b>
+<span>}</span>
 
+<span>public function sumTest() {</span>
+    <b>printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));</b>
+    <b>printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));</b>
+    <b>printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));</b>
+}</pre>
+      <pre class="terminal">
+sum(0, 0) = 0
+sum(1, 0) = 1
+sum(0, 1) = 0</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
+    <article >
+      <p>Manualmente</p>
+      <pre class="prettyprint" data-lang="php">
+public function sum($a, $b) {
+    return <b>$a + $b;</b>
+}
+
+public function sumTest() {
+    printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));
+    printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));
+    printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));
+}</pre>
+      <pre class="terminal">
+sum(0, 0) = 1
+sum(1, 0) = 1
+<b>sum(0, 1) = 1</b></pre>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/what.gif)">
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
+    <article>
+      - frameworks de teste
+      - mocks, stubs, etc.
     </article>
   </slide>
 
