@@ -1,3 +1,11 @@
+pre b {
+  font-weight: normal;
+}
+
+.highlight-code pre b {
+  font-weight: bold;
+}
+
 .removed {
   opacity: 0.7;
   text-decoration: line-through;
@@ -6,4 +14,9 @@
 .terminal {
   background-color: #333;
   color: #ccc;
+}
+
+.highlight-code .terminal b {
+  color: #fff;
+  font-weight: bold;
 }

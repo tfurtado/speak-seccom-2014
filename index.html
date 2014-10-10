@@ -233,15 +233,13 @@ class Person {
     <article>
       <p>Manualmente</p>
       <pre class="prettyprint build" data-lang="php">
-<span>public function sum($a, $b) {</span>
+<span>function sum($a, $b) {</span>
     return <b>$a + 0;</b>
 <span>}</span>
 
-<span>public function sumTest() {</span>
-    <b>printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));</b>
-    <b>printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));</b>
-    <b>printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));</b>
-}</pre>
+<b>printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));</b>
+<b>printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));</b>
+<b>printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));</b></pre>
       <pre class="terminal">
 sum(0, 0) = 0
 sum(1, 0) = 1
@@ -254,20 +252,18 @@ sum(0, 1) = 0</pre>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
     </hgroup>
-    <article >
+    <article>
       <p>Manualmente</p>
       <pre class="prettyprint" data-lang="php">
-public function sum($a, $b) {
+function sum($a, $b) {
     return <b>$a + $b;</b>
 }
 
-public function sumTest() {
-    printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));
-    printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));
-    printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));
-}</pre>
+printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));
+printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));
+printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));</pre>
       <pre class="terminal">
-sum(0, 0) = 1
+sum(0, 0) = 0
 sum(1, 0) = 1
 <b>sum(0, 1) = 1</b></pre>
     </article>
@@ -281,57 +277,99 @@ sum(1, 0) = 1
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
     </hgroup>
+    <article class="smaller">
+      <p>~Automático~</p>
+      <pre class="prettyprint" data-lang="php">
+1  &lt;?php
+2  function sum($a, $b) {
+3      return 0 + $b;
+4  }
+5
+6  function sumTest($a, $b, $c) {
+7      <b>if (sum($a, $b) === $c) { return; }
+8      throw new Exception(/*...*/);</b>
+9  }
+10 sumTest(0, 0, 0);
+<b>11 sumTest(1, 0, 1);</b>
+12 sumTest(0, 1, 1);</pre>
+      <pre class="terminal">
+<b>PHP Fatal error:  Uncaught exception 'Exception' in sumTest.php:8</b>
+Stack trace:
+<b>#0 sumTest.php(11): sumTest(1, 0, 1)</b>
+#1 {main}
+  thrown in sumTest.php on line 8</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
     <article>
-      - frameworks de teste
+      <p>Usando um framework de testes</p>
+      <pre class="prettyprint" data-lang="php">
+class Calculator {
+    public function sum($a, $b) {
+        return $a + $b;
+    }
+}
+
+class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
+    public function sumTest() {
+        <b>$this->assertSame(0, sum(0, 0));
+        $this->assertSame(1, sum(1, 0));
+        $this->assertSame(1, sum(0, 1));</b>
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Automação de testes</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Automação de testes</h2>
+    </hgroup>
+    <article>
+
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Test-driven development (TDD)</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+    </hgroup>
+    <article>
+
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Cobertura de testes</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Cobertura de testes</h2>
+    </hgroup>
+    <article>
       - mocks, stubs, etc.
-    </article>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Automação de testes</h2>
-    </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Automação de testes</h2>
-    </hgroup>
-    <article>
-
-    </article>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Test-driven development (TDD)</h2>
-    </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Test-driven development (TDD)</h2>
-    </hgroup>
-    <article>
-
-    </article>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Cobertura de testes</h2>
-    </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Cobertura de testes</h2>
-    </hgroup>
-    <article>
-
     </article>
   </slide>
 
