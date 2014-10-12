@@ -86,8 +86,8 @@ URL: https://code.google.com/p/io-2012-slides
               <li>Como?</li>
             </ul>
           </li>
-          <li>Automação de testes</li>
           <li>Test-driven development (TDD)</li>
+          <li>Automação de testes</li>
           <li>Cobertura de testes</li>
         </ul>
       </p>
@@ -99,16 +99,9 @@ URL: https://code.google.com/p/io-2012-slides
     <hgroup class="auto-fadein">
       <h2>Testes de unidade</h2>
       <h3>
-        O que são? Como escrevê-los?
-        <span class="removed">De que se alimentam?</span>
+        O que são? <span class="removed">De que se alimentam? Como sobrevivem?</span>
       </h3>
     </hgroup>
-  </slide>
-
-  <slide class="fill nobackground" style="background-image: url(images/what.gif)">
-    <article>
-      <h2 class="full-image-caption">WHAT?</h2>
-    </article>
   </slide>
 
   <slide>
@@ -198,34 +191,42 @@ class CalculatorTest {
       <h3>Por quê?</h3>
     </hgroup>
     <article>
-      <ul>
-        <li>Garantir a correção das partes</li>
-        <li>Ampliar a capacidade de análise do todo</li>
-      </ul>
+      <p>Garantir a correção das partes</p>
       <pre class="prettyprint" data-lang="php">
 class Person {
-    public function __construct($age) { /*...*/ }
+    <b>public function __construct($age) { /*...*/ }</b>
     public function canBeArrested() { /*...*/ }
 }
 
-<b>(new Person(-1))->canBeArrested();</b>
-<b>(new Person(0))->canBeArrested();</b>
 (new Person(17))->canBeArrested();
 (new Person(18))->canBeArrested();
 (new Person(19))->canBeArrested();
-<b>(new Person(150))->canBeArrested();</b>
-<b>(new Person("RUKM?"))->canBeArrested();</b></pre>
+<b>(new Person(-1))->canBeArrested();
+(new Person(0))->canBeArrested();
+(new Person("RUKM?"))->canBeArrested();</b></pre>
     </article>
   </slide>
 
   <slide>
     <hgroup>
       <h2>Testes de unidade</h2>
-      <h3>Quando?</h3>
+      <h3>Por quê?</h3>
     </hgroup>
     <article>
-      <p><b>SEMPRE!</b></p>
-      <p>Simples assim!</p>
+      <p>Ampliar a capacidade de análise do todo</p>
+      <pre class="prettyprint" data-lang="php">
+class Person {
+    <b>public function __construct($age) { /*...*/ }</b>
+}</pre>
+      <pre class="prettyprint" data-lang="php">
+class Police {
+    public function arrest(Person $person) { /*...*/ }
+}
+
+$police = new Police();
+<b>$police->arrest(new Person(15));
+$police->arrest(new Person(19));</b>
+</pre>
     </article>
   </slide>
 
@@ -234,20 +235,20 @@ class Person {
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
     </hgroup>
-    <article>
+    <article class="build">
       <p>Manualmente</p>
-      <pre class="prettyprint build" data-lang="php">
-<span>function sum($a, $b) {</span>
+      <pre class="prettyprint" data-lang="php">
+function sum($a, $b) {
     return <b>$a + 0;</b>
-<span>}</span>
+}
 
-<b>printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));</b>
-<b>printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));</b>
-<b>printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));</b></pre>
+printf("sum(%d, %d) = %d [%d]\n", 0, 0, sum(0, 0), 0);
+printf("sum(%d, %d) = %d [%d]\n", 1, 0, sum(1, 0), 1);
+printf("sum(%d, %d) = %d [%d]\n", 0, 1, sum(0, 1), 1);</pre>
       <pre class="terminal">
-sum(0, 0) = 0
-sum(1, 0) = 1
-sum(0, 1) = 0</pre>
+sum(0, 0) = 0 [0]
+sum(1, 0) = 1 [1]
+<b>sum(0, 1) = 0 [1]</b></pre>
     </article>
   </slide>
 
@@ -263,17 +264,34 @@ function sum($a, $b) {
     return <b>$a + $b;</b>
 }
 
-printf("sum(%d, %d) = %d\n", 0, 0, sum(0, 0));
-printf("sum(%d, %d) = %d\n", 1, 0, sum(1, 0));
-printf("sum(%d, %d) = %d\n", 0, 1, sum(0, 1));</pre>
+printf("sum(%d, %d) = %d [%d]\n", 0, 0, sum(0, 0), 0);
+printf("sum(%d, %d) = %d [%d]\n", 1, 0, sum(1, 0), 1);
+printf("sum(%d, %d) = %d [%d]\n", 0, 1, sum(0, 1), 1);</pre>
       <pre class="terminal">
-sum(0, 0) = 0
-sum(1, 0) = 1
-<b>sum(0, 1) = 1</b></pre>
+sum(0, 0) = 0 [0]
+sum(1, 0) = 1 [1]
+<b>sum(0, 1) = 1 [1]</b></pre>
     </article>
   </slide>
 
-  <slide class="fill nobackground" style="background-image: url(images/what.gif)">
+  <slide class="fill nobackground" style="background-image: url(images/eyes.gif)">
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
+    <article>
+      <p>Manualmente</p>
+      <ul class="build">
+        <li>Repetitivo</li>
+        <li>Trabalhoso</li>
+        <li>Repetitivo (Oh, wait!)</li>
+        <li>Propenso a erros</li>
+        <li>Já disse que é repetitivo?</li>
+      </ul>
+    </article>
   </slide>
 
   <slide>
@@ -311,6 +329,21 @@ Stack trace:
       <h3>Como?</h3>
     </hgroup>
     <article>
+      <p>~Automático~</p>
+      <ul class="build">
+        <li>Continua sendo trabalhoso</li>
+        <li>Menos repetitivo</li>
+        <li>Mas ainda assim, repetitivo</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
+    <article>
       <p>Usando um framework de testes</p>
       <pre class="prettyprint" data-lang="php">
 class Calculator {
@@ -331,7 +364,491 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
 
   <slide>
     <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
+    <article>
+      <p>Usando um framework de testes</p>
+      <ul class="build">
+        <li>O "trabalho sujo" já foi feito</li>
+        <li>Padronização</li>
+        <li>Suporte nativo em IDEs</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h3>E quando um objeto interage com outro?</h3>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+    </hgroup>
+    <article class="smaller">
+      <p>Objetos dublês (mocks, stubs, fakes...)</p>
+      <pre class="prettyprint" data-lang="php">
+class Police {
+    public function arrest(Person $person) {
+        <b>if (! $person->canBeArrested()) {
+            throw new Exception(/*...*/);
+        }</b>
+    }
+}</pre>
+      <pre class="prettyprint" data-lang="php">
+class PoliceTest extends PHPUnit_Framework_TestCase {
+    public function arrestShouldThrowExceptionIfPersonCannotBeArrested() {
+        <b>$personMock = $this->getMock(Person::class);
+        $personMock->expects($this->once())->method('canBeArrested')->willReturn(false);</b>
+
+        $this->setExpectedException(Exception::class);
+
+        $police = new Police();
+        $police->arrest($personMock);
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h3>Quando escrevê-los?!</h3>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/always.gif)">
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Quando?</h3>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h2>SEMPRE!</h2>
+      <h3>Simples assim!</h3>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Quando?</h3>
+    </hgroup>
+    <article>
+      <p>Código legado (sem testes)</p>
+      <ul>
+        <li>Antes de acrescentar uma nova funcionalidade</li>
+        <li>Sempre que for necessário fazer uma alteração em uma classe</li>
+        <li>O quanto antes!</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Quando?</h3>
+    </hgroup>
+    <article>
+      <p>Novos projetos</p>
+      <ul>
+        <li><b>Antes</b> de acrescentar uma nova funcionalidade</li>
+        <li class="removed">Sempre que for necessário fazer uma alteração em uma classe</li>
+        <li class="removed">O quanto antes!</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Test-driven development (TDD)</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Abordagem do tipo "test-first"</li>
+        <li>
+          Princípios
+          <ul>
+            <li>KISS: Keep It Simple, Stupid</li>
+            <li>YAGNI: You Aren't Gonna Need It</li>
+            <li>Fake it till you make it</li>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+    </hgroup>
+    <article>
+      <div style="max-width: 45%">
+        <p>Desenvolvimento iterativo com seis passos básicos:</p>
+        <ol>
+          <li>1. Escrever um teste</li>
+          <li>2. Garantir que o novo teste <b>falha</b></li>
+          <li>3. Escrever código</li>
+          <li>4. Garantir que os testes <b>passam</b></li>
+          <li>5. Refatorar o código</li>
+          <li>6. Repetir</li>
+        </ol>
+      </div>
+      <img src="images/tdd-cycle.png" alt="Test-driven development" style="position: absolute; right: 0; top: 130px; width: 50%;">
+    </article>
+    <footer class="source">
+      Créditos da imagem: "<a href="http://commons.wikimedia.org/wiki/File:Test-driven_development.PNG#mediaviewer/File:Test-driven_development.PNG">Test-driven development</a>". Via <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>.
+    </footer>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>1. Escrever um teste</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class CalculatorTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @test
+     */
+    public function sumTest()
+    {
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>2. Garantir que o novo teste <b>falha</b></h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+.
+
+Time: 75 ms, Memory: 2.75Mb
+
+<b>OK (1 test, 0 assertions)</b></pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>2. Garantir que o novo teste <b>falha</b></h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class CalculatorTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @test
+     */
+    public function sumTest()
+    {
+        $calculator = <b>new Calculator();</b>
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>2. Garantir que o novo teste <b>falha</b></h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+<b>PHP Fatal error:  Class 'TFurtado\UnitTestSample\Calculator' not found
+  in .../test/CalculatorTest.php on line 19</b>
+PHP Stack trace:
+PHP   1. {main}() ./vendor/phpunit/phpunit/phpunit:0
+    ...</pre>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/taserto.jpg)">
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>3. Escrever código</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class Calculator
+{
+
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>4. Garantir que os testes <b>passam</b></h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+.
+
+Time: 65 ms, Memory: 2.75Mb
+
+<b>OK (1 test, 0 assertions)</b></pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>5. Refatorar o código</h3>
+    </hgroup>
+    <article class="flexbox vcenter build">
+      <img src="images/question.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>6. Repetir</h3>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/againagain.gif">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>1. Escrever um teste</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class CalculatorTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @test
+     */
+    public function sumTest()
+    {
+        $calculator = new Calculator();
+        <b>$this->assertSame(3, $calculator->sum(1, 2));</b>
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>2. Garantir que o novo teste <b>falha</b></h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+<b>PHP Fatal error:  Call to undefined method TFurtado\UnitTestSample\Calculator::sum()
+  in .../test/CalculatorTest.php on line 20</b>
+PHP Stack trace:
+PHP   1. {main}() ./vendor/phpunit/phpunit/phpunit:0
+    ...</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>3. Escrever código</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class Calculator
+{
+    <b>public function sum($a, $b)
+    {
+        $sum = $a + $b;
+        return $sum;
+    }</b>
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>4. Garantir que os testes <b>passam</b></h3>
+    </hgroup>
+    <article class="build">
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+.
+
+Time: 77 ms, Memory: 2.75Mb
+
+<b>OK (1 test, 1 assertion)</b></pre>
+      <img src="images/ok.png" style="bottom: 50px; position: absolute; right: 20px; width: 30%;">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>5. Refatorar o código</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class Calculator
+{
+    public function sum($a, $b)
+    {
+        <span class="removed">$sum = $a + $b;</span>
+        <span class="removed">return $sum;</span>
+        <b>return $a + $b</b>;
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>5. Refatorar o código</h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+.
+
+Time: 87 ms, Memory: 2.75Mb
+
+OK (1 test, 1 assertion)</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>6. Repetir</h3>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/repetir.gif">
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
       <h2>Cobertura de testes</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Cobertura de testes</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <h3>Quanto do software deve estar coberto por testes de unidade?</h3>
+      <div class="build centered">
+        <h3>100%!</h3> <h3>TODO!</h3> <h3>O software INTEIRO!</h3>
+        <p style="margin: 10px;">Deu pra endenter, né?</p>
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Cobertura de testes</h2>
+      <h3>Como garantir 100% de cobertura?</h3>
+    </hgroup>
+    <article>
+      <p>Não dá pra garantir :-(</p>
+      <ul>
+        <li>Praticando TDD rigorosamente</li>
+        <li>Automatizando a execução dos testes</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Testes de unidade na Meritt</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade na Meritt</h2>
+    </hgroup>
+    <article>
+      <p>Objetivo: cobertura de 100%</p>
+      <ul>
+        <li>Fazem parte da rotina de desenvolvimento</li>
+        <li>Integrados ao processo de build</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade na Meritt</h2>
+      <h3>Status</h3>
+    </hgroup>
+    <article>
+      <img src="images/status-2.png" style="width: 100%;">
+      <img src="images/status-4.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade na Meritt</h2>
+      <h3>Status</h3>
+    </hgroup>
+    <article>
+      <img src="images/status-1.png" style="width: 100%;">
+      <img src="images/status-3.png">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Automação de testes</h2>
     </hgroup>
     <article>
       - mocks, stubs, etc.
@@ -341,74 +858,66 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Test-driven development (TDD)</h2>
-    </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Test-driven development (TDD)</h2>
-    </hgroup>
-    <article>
-
-    </article>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Cobertura de testes</h2>
-    </hgroup>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
-      <h2>Automação de testes</h2>
-    </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Automação de testes</h2>
-    </hgroup>
-    <article>
-
-    </article>
-  </slide>
-
-  <slide class="segue dark nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <hgroup class="auto-fadein">
       <h2>Considerações finais</h2>
     </hgroup>
+    <article>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Considerações finais</h2>
+    </hgroup>
+    <article>
+      <p>Testes de unidade são...</p>
+      <ul class="build">
+        <li>... essenciais para garantir a manutenibilidade do software</li>
+        <li>... instrumentos de simples implementação</li>
+        <li>... muito valiosos para garantia da qualidade do produto</li>
+        <li>... uma importante forma de documentação técnica</li>
+        <li>... divertidos! Por que não?</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/meritt_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Pay attention to zeros. If there is a zero, someone will divide by it.
+      </q>
+      <div class="author">
+        Cem Kaner
+      </div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Links e referências</h2>
+    </hgroup>
+    <article class="smaller">
+      <ul>
+        <li><a href="http://pt.wikipedia.org/wiki/Teste_de_unidade">Teste de unidade [Wikipedia]</a></li>
+        <li><a href="http://pt.wikipedia.org/wiki/Test_Driven_Development">Test Driven Development [Wikipedia]</a></li>
+        <li><a href="http://pt.wikipedia.org/wiki/Keep_It_Simple">Keep It Simple [Wikipedia]</a></li>
+        <li><a href="http://pt.wikipedia.org/wiki/YAGNI">YAGNI [Wikipedia]</a></li>
+        <li><a href="http://pt.wikipedia.org/wiki/Test_Driven_Development"> [Wikipedia]</a></li>
+      </ul>
+    </article>
   </slide>
 
   <slide class="thank-you-slide segue nobackground">
     <aside class="gdbar right"><img src="images/meritt_icon_128.png"></aside>
     <article class="flexbox vleft auto-fadein">
-      <h2>&lt;Thank You!&gt;</h2>
-      <p>Important contact information goes here.</p>
+      <h2>Muito obrigado!</h2>
     </article>
-    <p class="auto-fadein" data-config-contact>
-      <!-- populated from slide_config.json -->
+    <p class="auto-fadein">
+      <span>email</span><a href="mailto:tfurtado@gmail.com">tfurtado@gmail.com</a><br>
+      <span>twitter</span><a href="http://twitter.com/@tiagobronca">@tiagobronca</a><br>
+      <span>github</span><a href="http://github.com/tfurtado">github.com/tfurtado</a>
     </p>
-  </slide>
-
-  <slide class="logoslide nobackground">
-    <article class="flexbox vcenter">
-      <span><img src="images/meritt_logo.png"></span>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2></h2>
-      <h3></h3>
-    </hgroup>
-    <article>
-
-    </article>
   </slide>
 
   <slide class="backdrop"></slide>

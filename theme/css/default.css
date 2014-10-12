@@ -240,6 +240,7 @@ body {
 
 /* line 98, ../scss/default.scss */
 slides > slide {
+  border: 1px solid #111;
   display: none;
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 26px;
@@ -296,7 +297,7 @@ slides > slide.far-next {
 }
 /* line 163, ../scss/default.scss */
 slides > slide.dark {
-  background: #515151 !important;
+  background: #000 !important;
 }
 /* line 171, ../scss/default.scss */
 slides > slide:not(.nobackground):before {
@@ -1243,8 +1244,8 @@ article.smaller q:before, article.smaller q:after {
 
 /* line 862, ../scss/default.scss */
 .thank-you-slide {
-  background: #4387fd !important;
-  color: white;
+  background: black !important;
+  color: #f58634;
 }
 /* line 866, ../scss/default.scss */
 .thank-you-slide h2 {
@@ -1366,12 +1367,15 @@ aside.gdbar img {
 }
 
 /* line 961, ../scss/default.scss */
-[data-config-contact] a {
+.thank-you-slide a {
   color: white;
   border-bottom: none;
 }
+.thank-you-slide a:hover {
+  color: #f58634 !important;
+}
 /* line 965, ../scss/default.scss */
-[data-config-contact] span {
+.thank-you-slide span {
   width: 115px;
   display: inline-block;
 }

@@ -16,7 +16,19 @@ pre b {
   color: #ccc;
 }
 
-.highlight-code .terminal b {
-  color: #fff;
+.highlight-code slide.current .terminal {
+  color: rgba(204, 204, 204, 0.15);
+  -webkit-transition: color 0.5s ease-in;
+  -moz-transition: color 0.5s ease-in;
+  -o-transition: color 0.5s ease-in;
+  transition: color 0.5s ease-in;
+}
+
+.highlight-code slide.current .terminal b {
   font-weight: bold;
+  color: #fff;
+  -webkit-transition: color 0.5s ease-in;
+  -moz-transition: color 0.5s ease-in;
+  -o-transition: color 0.5s ease-in;
+  transition: color 0.5s ease-in;
 }

@@ -22,10 +22,10 @@ var SLIDE_CONFIG = {
       {
           name: 'Tiago Furtado',
           company: 'Full-stack developer, Meritt Informação Educacional',
-          //gplus: 'http://plus.google.com/1234567890',
           twitter: '@tiagobronca',
-          //www: 'http://www.you.com',
           github: 'http://github.com/tfurtado'
+          //gplus: 'http://plus.google.com/1234567890',
+          //www: 'http://www.you.com',
       }
   ]
 };
