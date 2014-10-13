@@ -25,72 +25,93 @@ URL: https://code.google.com/p/io-2012-slides
 <body style="opacity: 0">
 
 <slides class="layout-widescreen">
-
-  <slide class="logoslide nobackground">
-    <article class="flexbox vcenter">
-      <span><img src="images/meritt_logo.png"></span>
-    </article>
-  </slide>
-
   <slide class="title-slide segue nobackground">
-    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+
     <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
     <hgroup class="auto-fadein">
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
     </hgroup>
+    <img src="images/meritt_logo_medium.png" style="position: absolute; right: 50px; top: 50px;">
   </slide>
 
-  <slide>
-    <hgroup>
+  <slide class="nobackground">
+    <hgroup style="padding-left: 150px; margin-top: 100px; position: relative;">
       <h2>Tiago Furtado</h2>
+      <h3 style="line-height: 1.1">Mestre em Ciência da Computação pela Universidade Federal de Viçosa (UFV)</h3>
+      <img src="images/tiago.png" style="border-radius: 50%; left: 0; position: absolute; top: -5px;">
     </hgroup>
-    <article>
-      <p>Formação acadêmica:</p>
-      <ul>
-        <li>Mestrado em Ciência da Computação (2008-2010)</li>
-        <li>Bacharelado em Ciência da Computação pela UFV (2004-2007)</li>
-      </ul>
-      <p>Experiência:</p>
-      <ul>
-        <li>Full-stack developer - Meritt Informação Educacional</li>
-        <li>Arquiteto de software - Jungle Digital Games</li>
-        <li>Gerente de desenvolvimento - A.S. Sistemas</li>
-        <li>Tutor de sala - UNOPAR (EaD)</li>
-      </ul>
+    <article class="me-slide">
+      <div class="centered" style="margin-top: 50px;">
+        <img src="images/meritt_logo_medium.png"><br>
+        <img src="images/jungle_logo.png">
+        <img src="images/assistemas_logo.png"><br>
+        <img src="images/unopar_logo.png">
+      </div>
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Meritt Informação Educacional</h2>
-    </hgroup>
+  <slide class="fill nobackground" style="background-image: url(images/meritt_view.jpg)">
     <article>
-      <p>...</p>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Agenda</h2>
-    </hgroup>
-    <article>
-      <p>
-        <ul class="build">
-          <li>Testes de unidade
-            <ul class="build">
-              <li>O quê?</li>
-              <li>Por quê?</li>
-              <li>Quando?</li>
-              <li>Como?</li>
-            </ul>
-          </li>
-          <li>Test-driven development (TDD)</li>
-          <li>Automação de testes</li>
-          <li>Cobertura de testes</li>
-        </ul>
+      <p class="centered" style="margin-top: 75px;">
+        <img src="images/meritt_logo.png">
       </p>
+    </article>
+  </slide>
+
+  <slide class="nobackground meritt-dark">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Testes de software / unidade</li>
+          <li>TDD</li>
+          <li>Cobertura de testes</li>
+          <li>Testes de unidade na Meritt</li>
+          <li>Considerações finais</li>
+        </ul>
+      </section>
+    </aside>
+    <article class="flexbox vcenter">
+      <h2>Vamos falar de coisa boa?</h2>
+    </article>
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Testes de unidade</h2>
+    </hgroup>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/what.gif)">
+  </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Testes de <span class="removed">unidade</span> software</h2>
+    </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de software</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/test-pyramid.png">
+    </article>
+    <footer class="source">
+      Mike Cohn. <i>Succeeding with Agile</i>, 2009.
+    </footer>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de software</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/white-box-testing.png" style="max-width: 100%;">
     </article>
   </slide>
 
@@ -119,26 +140,30 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide>
-    <hgroup>
-      <h2>Testes de unidade</h2>
-    </hgroup>
-    <article class="smaller">
+    <aside class="note">
+    <section>
       <p>
         Pequenos trechos de código (por programadores <b>para programadores</b>!),
         escritos na mesma linguagem do produto, com o objetivo de testar a menor unidade
         do software (um método <span class="removed">ou função</span>)
       </p>
-      <pre class="prettyprint" data-lang="php">
-class Calculator {
-    <b>public function sum($first, $second) {
-        return $first + $second;
-    }</b>
+    </section>
+    </aside>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+    </hgroup>
+    <article>
 
-    public function subtract($first, $second) {
-        /* ... */
+      <pre class="prettyprint" data-lang="php">
+interface CalculatorInterface {
+    <b>public function sum($first, $second);</b>
+    public function subtract($first, $second);
 }
 
+class Calculator implements CalculatorInterface { /* ... */ }
+
 class CalculatorTest {
+    /** @test */
     <b>public function sumShouldReturnTheSumOfTwoNumbers() {
         $calculator = new Calculator();
         $result = $calculator->sum(1, 2);
@@ -146,9 +171,6 @@ class CalculatorTest {
             throw new Exception("Something wrong is not right... ¯\_(ツ)_/¯");
         }
     }</b>
-
-    public function subtractShouldReturnTheDifferenceOfTwoNumbers() {
-        /* ... */
 }</pre>
     </article>
   </slide>
@@ -161,11 +183,11 @@ class CalculatorTest {
     <article>
       <ul>
         <li>Software livre de defeitos <b>deveria ser sempre</b> entregue</li>
-        <li>
+        <li class="build">
           Mas...
           <ul>
             <li>software é muito complexo</li>
-            <li>software é feito por pessoas <span>(e pessoas são imperfeitas! ><")</span></li>
+            <li>pessoas são imperfeitas! ><"</li>
           </ul>
           <p class="centered"><img src="images/shit-happens.jpg" alt="s**t happens" title="s**t happens"></p>
         </li>
@@ -278,29 +300,32 @@ sum(1, 0) = 1 [1]
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Repetitivo</li>
+          <li>Trabalhoso</li>
+          <li>Repetitivo (Oh, wait!)</li>
+          <li>Propenso a erros</li>
+          <li>Já disse que é repetitivo?</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
     </hgroup>
-    <article>
+    <article class="flexbox vcenter">
       <p>Manualmente</p>
-      <ul class="build">
-        <li>Repetitivo</li>
-        <li>Trabalhoso</li>
-        <li>Repetitivo (Oh, wait!)</li>
-        <li>Propenso a erros</li>
-        <li>Já disse que é repetitivo?</li>
-      </ul>
+      <img src="images/repetitivo.gif">
     </article>
   </slide>
 
-  <slide>
+  <slide class="nobackground">
     <hgroup>
       <h2>Testes de unidade</h2>
-      <h3>Como?</h3>
     </hgroup>
-    <article class="smaller">
-      <p>~Automático~</p>
+    <article>
       <pre class="prettyprint" data-lang="php">
 1  &lt;?php
 2  function sum($a, $b) {
@@ -319,22 +344,27 @@ sum(1, 0) = 1 [1]
 Stack trace:
 <b>#0 sumTest.php(11): sumTest(1, 0, 1)</b>
 #1 {main}
-  thrown in sumTest.php on line 8</pre>
+  <b>thrown in sumTest.php on line 8</b></pre>
     </article>
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Continua sendo trabalhoso</li>
+          <li>Menos repetitivo</li>
+          <li>Mas ainda assim, repetitivo</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
     </hgroup>
-    <article>
+    <article class="flexbox vcenter">
       <p>~Automático~</p>
-      <ul class="build">
-        <li>Continua sendo trabalhoso</li>
-        <li>Menos repetitivo</li>
-        <li>Mas ainda assim, repetitivo</li>
-      </ul>
+      <img src="images/boring.gif">
     </article>
   </slide>
 
@@ -353,6 +383,7 @@ class Calculator {
 }
 
 class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
+    /** @test */
     public function sumTest() {
         <b>$this->assertSame(0, sum(0, 0));
         $this->assertSame(1, sum(1, 0));
@@ -363,21 +394,26 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <ul>
+          <li>O "trabalho sujo" já foi feito</li>
+          <li>Padronização</li>
+          <li>Suporte nativo em IDEs</li>
+        </ul>
+      </section>
+    </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
     </hgroup>
-    <article>
+    <article class="flexbox vcenter">
       <p>Usando um framework de testes</p>
-      <ul class="build">
-        <li>O "trabalho sujo" já foi feito</li>
-        <li>Padronização</li>
-        <li>Suporte nativo em IDEs</li>
-      </ul>
+      <img src="images/the-right-way.png">
     </article>
   </slide>
 
-  <slide>
+  <slide class="meritt-dark">
     <hgroup>
       <h2>Testes de unidade</h2>
     </hgroup>
@@ -390,21 +426,31 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
     <hgroup>
       <h2>Testes de unidade</h2>
     </hgroup>
-    <article class="smaller">
+    <article>
       <p>Objetos dublês (mocks, stubs, fakes...)</p>
       <pre class="prettyprint" data-lang="php">
 class Police {
-    public function arrest(Person $person) {
-        <b>if (! $person->canBeArrested()) {
+    public function arrest(<b>Person $person</b>) {
+        if (! <b>$person->canBeArrested()</b>) {
             throw new Exception(/*...*/);
-        }</b>
+        }
     }
 }</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+    </hgroup>
+    <article>
       <pre class="prettyprint" data-lang="php">
 class PoliceTest extends PHPUnit_Framework_TestCase {
-    public function arrestShouldThrowExceptionIfPersonCannotBeArrested() {
+    /** @test */
+    public function arrestShouldThrowException<b>IfPersonCannotBeArrested</b>() {
         <b>$personMock = $this->getMock(Person::class);
-        $personMock->expects($this->once())->method('canBeArrested')->willReturn(false);</b>
+        $personMock->expects($this->once())
+                   ->method('canBeArrested')->willReturn(false);</b>
 
         $this->setExpectedException(Exception::class);
 
@@ -425,17 +471,6 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
   </slide>
 
   <slide class="fill nobackground" style="background-image: url(images/always.gif)">
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Testes de unidade</h2>
-      <h3>Quando?</h3>
-    </hgroup>
-    <article class="flexbox vcenter">
-      <h2>SEMPRE!</h2>
-      <h3>Simples assim!</h3>
-    </article>
   </slide>
 
   <slide>
@@ -500,7 +535,7 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
     </hgroup>
     <article>
       <div style="max-width: 45%">
-        <p>Desenvolvimento iterativo com seis passos básicos:</p>
+        <p>Desenvolvimento iterativo com seis passos básicos (baby steps):</p>
         <ol>
           <li>1. Escrever um teste</li>
           <li>2. Garantir que o novo teste <b>falha</b></li>
@@ -846,15 +881,6 @@ OK (1 test, 1 assertion)</pre>
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Automação de testes</h2>
-    </hgroup>
-    <article>
-      - mocks, stubs, etc.
-    </article>
-  </slide>
-
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
@@ -874,10 +900,33 @@ OK (1 test, 1 assertion)</pre>
       <ul class="build">
         <li>... essenciais para garantir a manutenibilidade do software</li>
         <li>... instrumentos de simples implementação</li>
-        <li>... muito valiosos para garantia da qualidade do produto</li>
+        <li>... muito valiosos para criar um produto de qualidade</li>
         <li>... uma importante forma de documentação técnica</li>
         <li>... divertidos! Por que não?</li>
       </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Considerações finais</h2>
+    </hgroup>
+    <article>
+      <p>Testes de unidade <b>não</b> são...</p>
+      <ul class="build">
+        <li>... uma garantia de qualidade do produto final</li>
+        <li>... a solução mágica para software mal arquitetado</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Considerações finais</h2>
+    </hgroup>
+    <article>
+      <p>Temos vagas!</p>
+
     </article>
   </slide>
 
@@ -916,7 +965,8 @@ OK (1 test, 1 assertion)</pre>
     <p class="auto-fadein">
       <span>email</span><a href="mailto:tfurtado@gmail.com">tfurtado@gmail.com</a><br>
       <span>twitter</span><a href="http://twitter.com/@tiagobronca">@tiagobronca</a><br>
-      <span>github</span><a href="http://github.com/tfurtado">github.com/tfurtado</a>
+      <span>github</span><a href="http://github.com/tfurtado">github.com/tfurtado</a><br>
+      <a href="http://meritt.com.br">meritt.com.br</a>
     </p>
   </slide>
 

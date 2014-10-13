@@ -6,6 +6,29 @@ pre b {
   font-weight: bold;
 }
 
+.me-slide img {
+  margin-right: 25px;
+  vertical-align: middle;
+}
+
+.me-slide img:first-of-type,
+.me-slide img:last-of-type {
+  margin-bottom: 15px;
+  margin-right: 0;
+}
+
+.meritt-dark {
+  background: #000;
+}
+
+.meritt-dark hgroup h2 {
+  color: #fff;
+}
+
+.meritt-dark article * {
+  color: #f58634;
+}
+
 .removed {
   opacity: 0.7;
   text-decoration: line-through;

@@ -527,7 +527,8 @@ ul ul {
   transition: opacity 0.5s ease-in;
 }
 /* line 368, ../scss/default.scss */
-.highlight-code slide.current b {
+.highlight-code slide.current b,
+.highlight-code slide.current u {
   opacity: 1;
 }
 
@@ -1345,6 +1346,7 @@ aside.gdbar img {
   font-size: 34px;
   color: darkgrey;
   font-weight: inherit;
+  margin-bottom: 150px;
 }
 /* line 940, ../scss/default.scss */
 .title-slide hgroup p {

@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'Testes de Unidade<br>na prática',
+    title: 'Testes de Unidade na prática',
     subtitle: 'Por quê? Quando? Como?',
     eventTitle: 'XVII SECCOM',
     useBuilds: true, // Default: true. False will turn off slide animation builds.
@@ -20,10 +20,10 @@ var SLIDE_CONFIG = {
   // Author information
   presenters: [
       {
-          name: 'Tiago Furtado',
+          name: 'Tiago Furtado &lt;<a href="mailto:tfurtado@gmail.com">tfurtado@gmail.com</a>&gt;',
           company: 'Full-stack developer, Meritt Informação Educacional',
           twitter: '@tiagobronca',
-          github: 'http://github.com/tfurtado'
+          github: 'http://github.com/tfurtado',
           //gplus: 'http://plus.google.com/1234567890',
           //www: 'http://www.you.com',
       }
