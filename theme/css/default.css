@@ -1245,8 +1245,8 @@ article.smaller q:before, article.smaller q:after {
 
 /* line 862, ../scss/default.scss */
 .thank-you-slide {
-  background: black !important;
-  color: #f58634;
+  background: #f58634 !important;
+  color: #000;
 }
 /* line 866, ../scss/default.scss */
 .thank-you-slide h2 {
@@ -1371,7 +1371,7 @@ aside.gdbar img {
   border-bottom: none;
 }
 .thank-you-slide a:hover {
-  color: #f58634 !important;
+  color: #000 !important;
 }
 /* line 965, ../scss/default.scss */
 .thank-you-slide span {

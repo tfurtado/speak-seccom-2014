@@ -21,7 +21,7 @@ var SLIDE_CONFIG = {
   presenters: [
       {
           name: 'Tiago Furtado &lt;<a href="mailto:tfurtado@gmail.com">tfurtado@gmail.com</a>&gt;',
-          company: 'Full-stack developer, Meritt Informação Educacional',
+          company: 'Full-stack developer, Meritt',
           twitter: '@tiagobronca',
           github: 'http://github.com/tfurtado',
           //gplus: 'http://plus.google.com/1234567890',
