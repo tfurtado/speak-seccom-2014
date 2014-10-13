@@ -1252,6 +1252,7 @@ article.smaller q:before, article.smaller q:after {
 .thank-you-slide h2 {
   font-size: 60px;
   color: inherit;
+  margin-bottom: 85px;
 }
 /* line 871, ../scss/default.scss */
 .thank-you-slide article > p {
@@ -1278,11 +1279,7 @@ aside.gdbar {
   -ms-border-radius: 0 10px 10px 0;
   -o-border-radius: 0 10px 10px 0;
   border-radius: 0 10px 10px 0;
-  background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #e6e6e6), color-stop(100%, #e6e6e6)) no-repeat;
-  background: -webkit-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
-  background: -moz-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
-  background: -o-linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
-  background: linear-gradient(left, #e6e6e6, #e6e6e6) no-repeat;
+  background: #fff;
   -webkit-background-size: 0% 100%;
   -moz-background-size: 0% 100%;
   -o-background-size: 0% 100%;
@@ -1337,7 +1334,7 @@ aside.gdbar img {
 /* line 927, ../scss/default.scss */
 .title-slide hgroup h1 {
   font-size: 65px;
-  line-height: 1.4;
+  line-height: 1.1;
   letter-spacing: -3px;
   color: #515151;
 }

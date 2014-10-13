@@ -52,7 +52,7 @@ URL: https://code.google.com/p/io-2012-slides
     </article>
   </slide>
 
-  <slide class="fill nobackground" style="background-image: url(images/meritt_view.jpg)">
+  <slide class="fill nobackground" style="background-image: url(images/meritt_view.jpg); background-position: center top">
     <article>
       <p class="centered" style="margin-top: 75px;">
         <img src="images/meritt_logo.png">
@@ -99,10 +99,37 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>Testes de software</h2>
     </hgroup>
     <article class="flexbox vcenter">
+      <img src="images/blackbox-whitebox.jpg">
+    </article>
+  </slide>
+
+  <slide>
+    <aside  class="note">
+      <section>
+        <p>(...) a common problem in organisatons who use automation – the inverted pyramid, or ice-cream cone.</p>
+        <p>
+          This situation occurs where too much emphasis is placed on automated GUI & manual tests which may occur
+          for numerous reasons such as lack of experience in writing lower level tests or working with legacy code.
+        </p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Testes de software</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/test-cone.png" style="width: 135%">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Testes de software</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
       <img src="images/test-pyramid.png">
     </article>
     <footer class="source">
-      Mike Cohn. <i>Succeeding with Agile</i>, 2009.
+      Martin Fowler. <a href="http://martinfowler.com/bliki/TestPyramid.html">martinfowler.com/bliki/TestPyramid.html</a>, 2012.
     </footer>
   </slide>
 
@@ -111,7 +138,7 @@ URL: https://code.google.com/p/io-2012-slides
       <h2>Testes de software</h2>
     </hgroup>
     <article class="flexbox vcenter">
-      <img src="images/white-box-testing.png" style="max-width: 100%;">
+      <img src="images/test-pyramid-cone.png" style="max-height: 100%;">
     </article>
   </slide>
 
@@ -156,21 +183,21 @@ URL: https://code.google.com/p/io-2012-slides
 
       <pre class="prettyprint" data-lang="php">
 interface CalculatorInterface {
-    <b>public function sum($first, $second);</b>
-    public function subtract($first, $second);
+  <b>public function sum($first, $second);</b>
+  public function subtract($first, $second);
 }
 
 class Calculator implements CalculatorInterface { /* ... */ }
 
 class CalculatorTest {
-    /** @test */
-    <b>public function sumShouldReturnTheSumOfTwoNumbers() {
-        $calculator = new Calculator();
-        $result = $calculator->sum(1, 2);
-        if ($result !== 3) {
-            throw new Exception("Something wrong is not right... ¯\_(ツ)_/¯");
-        }
-    }</b>
+  /** @test */
+  <b>public function sumShouldReturnTheSumOfTwoNumbers() {
+    $calculator = new Calculator();
+    $result = $calculator->sum(1, 2);
+    if ($result !== 3) {
+        throw new Exception("Something wrong's not right ¯\_(ツ)_/¯");
+    }
+  }</b>
 }</pre>
     </article>
   </slide>
@@ -409,7 +436,7 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
     </hgroup>
     <article class="flexbox vcenter">
       <p>Usando um framework de testes</p>
-      <img src="images/the-right-way.png">
+      <img src="images/the-right-way.png" style="max-height: 60%;">
     </article>
   </slide>
 
@@ -446,17 +473,17 @@ class Police {
     <article>
       <pre class="prettyprint" data-lang="php">
 class PoliceTest extends PHPUnit_Framework_TestCase {
-    /** @test */
-    public function arrestShouldThrowException<b>IfPersonCannotBeArrested</b>() {
-        <b>$personMock = $this->getMock(Person::class);
-        $personMock->expects($this->once())
-                   ->method('canBeArrested')->willReturn(false);</b>
+  /** @test */
+  public function arrestShouldThrowException<b>IfPersonCantBeArrested</b>() {
+    <b>$personMock = $this->getMock(Person::class);
+    $personMock->expects($this->once())
+               ->method('canBeArrested')->willReturn(false);</b>
 
-        $this->setExpectedException(Exception::class);
+    $this->setExpectedException(Exception::class);
 
-        $police = new Police();
-        $police->arrest($personMock);
-    }
+    $police = new Police();
+    $police->arrest($personMock);
+  }
 }</pre>
     </article>
   </slide>
@@ -506,7 +533,7 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <hgroup class="auto-fadein">
-      <h2>Test-driven development (TDD)</h2>
+      <h2>Test-driven development</h2>
     </hgroup>
   </slide>
 
@@ -578,7 +605,8 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
     </hgroup>
     <article>
       <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
 PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 .
@@ -616,7 +644,8 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
     </hgroup>
     <article>
       <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
 PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 <b>PHP Fatal error:  Class 'TFurtado\UnitTestSample\Calculator' not found
@@ -651,7 +680,8 @@ class Calculator
     </hgroup>
     <article>
       <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
 PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 .
@@ -710,11 +740,13 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
     </hgroup>
     <article>
       <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
 PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
-<b>PHP Fatal error:  Call to undefined method TFurtado\UnitTestSample\Calculator::sum()
-  in .../test/CalculatorTest.php on line 20</b>
+<b>PHP Fatal error:  Call to undefined method
+    TFurtado\UnitTestSample\Calculator::sum()
+    in .../test/CalculatorTest.php on line 20</b>
 PHP Stack trace:
 PHP   1. {main}() ./vendor/phpunit/phpunit/phpunit:0
     ...</pre>
@@ -746,7 +778,8 @@ class Calculator
     </hgroup>
     <article class="build">
       <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
 PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 .
@@ -784,7 +817,8 @@ class Calculator
     </hgroup>
     <article>
       <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php test/CalculatorTest.php
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
 PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 .
@@ -817,10 +851,10 @@ OK (1 test, 1 assertion)</pre>
       <h2>Cobertura de testes</h2>
     </hgroup>
     <article class="flexbox vcenter">
-      <h3>Quanto do software deve estar coberto por testes de unidade?</h3>
+      <h3 class="centered" style="line-height: 1.2;">Quanto do software deve estar coberto por testes de unidade?</h3>
       <div class="build centered">
         <h3>100%!</h3> <h3>TODO!</h3> <h3>O software INTEIRO!</h3>
-        <p style="margin: 10px;">Deu pra endenter, né?</p>
+        <p style="font-size: 0.8em; margin: 10px;">Deu pra endenter, né?</p>
       </div>
     </article>
   </slide>
@@ -886,9 +920,6 @@ OK (1 test, 1 assertion)</pre>
     <hgroup class="auto-fadein">
       <h2>Considerações finais</h2>
     </hgroup>
-    <article>
-
-    </article>
   </slide>
 
   <slide>
@@ -920,15 +951,24 @@ OK (1 test, 1 assertion)</pre>
     </article>
   </slide>
 
-  <slide>
-    <hgroup>
-      <h2>Considerações finais</h2>
-    </hgroup>
-    <article>
-      <p>Temos vagas!</p>
-
+  <slide class="nobackground">
+    <article class="centered">
+      <h2 style="margin-bottom: 40px;">Temos vagas!</h2>
+      <img src="images/job-1.png" style="max-height: 37%;">
+      <img src="images/job-2.png" style="max-height: 37%;"><br>
+      <img src="images/job-4.png" style="max-height: 37%;">
+      <img src="images/job-3.png" style="max-height: 37%;">
+      <p style="margin-top: 25px;"><a href="http://meritt.recruiterbox.com">meritt.recruiterbox.com</a></p>
     </article>
   </slide>
+
+  <slide class="segue dark nobackground">
+    <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>Perguntas?</h2>
+    </hgroup>
+  </slide>
+
 
   <slide class="segue dark quote nobackground">
     <aside class="gdbar right bottom"><img src="images/meritt_icon_128.png"></aside>
@@ -939,21 +979,6 @@ OK (1 test, 1 assertion)</pre>
       <div class="author">
         Cem Kaner
       </div>
-    </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Links e referências</h2>
-    </hgroup>
-    <article class="smaller">
-      <ul>
-        <li><a href="http://pt.wikipedia.org/wiki/Teste_de_unidade">Teste de unidade [Wikipedia]</a></li>
-        <li><a href="http://pt.wikipedia.org/wiki/Test_Driven_Development">Test Driven Development [Wikipedia]</a></li>
-        <li><a href="http://pt.wikipedia.org/wiki/Keep_It_Simple">Keep It Simple [Wikipedia]</a></li>
-        <li><a href="http://pt.wikipedia.org/wiki/YAGNI">YAGNI [Wikipedia]</a></li>
-        <li><a href="http://pt.wikipedia.org/wiki/Test_Driven_Development"> [Wikipedia]</a></li>
-      </ul>
     </article>
   </slide>
 

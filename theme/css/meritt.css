@@ -1,10 +1,13 @@
+/*
 pre b {
   font-weight: normal;
 }
 
+.popup pre b,
 .highlight-code pre b {
   font-weight: bold;
 }
+*/
 
 .me-slide img {
   margin-right: 25px;
