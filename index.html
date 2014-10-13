@@ -53,6 +53,16 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="fill nobackground" style="background-image: url(images/meritt_view.jpg); background-position: center top">
+    <aside class="note">
+      <section>
+        <ul>
+          <li>Startup sediada em Florianópolis</li>
+          <li>Dados educacionais relativos ao <b>aprendizado</b> dos alunos</li>
+          <li>tecnologias escaláveis</li>
+          <li>Intuitivas, excelente experiência para o usuário</li>
+        </ul>
+      </section>
+    </aside>
     <article>
       <p class="centered" style="margin-top: 75px;">
         <img src="images/meritt_logo.png">
@@ -209,10 +219,10 @@ class CalculatorTest {
     </hgroup>
     <article>
       <ul>
-        <li>Software livre de defeitos <b>deveria ser sempre</b> entregue</li>
+        <li>Software livre de defeitos <b>deveria ser</b> sempre entregue</li>
         <li class="build">
           Mas...
-          <ul>
+          <ul class="build">
             <li>software é muito complexo</li>
             <li>pessoas são imperfeitas! ><"</li>
           </ul>
@@ -264,13 +274,15 @@ class Person {
     <article>
       <p>Ampliar a capacidade de análise do todo</p>
       <pre class="prettyprint" data-lang="php">
-class Person {
-    <b>public function __construct($age) { /*...*/ }</b>
-}</pre>
-      <pre class="prettyprint" data-lang="php">
-class Police {
-    public function arrest(Person $person) { /*...*/ }
+interface PersonInterface {
+    <b>public function __construct($age);</b>
 }
+class Person implements PersonInterface { /*...*/ }
+
+interface PoliceInterface {
+    public function arrest(Person $person);
+}
+class Police implements PoliceInterface { /*...*/ }
 
 $police = new Police();
 <b>$police->arrest(new Person(15));
