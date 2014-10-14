@@ -133,26 +133,21 @@ URL: https://code.google.com/p/io-2012-slides
   <slide>
     <aside  class="note">
       <section>
-        <p>(...) a common problem in organisatons who use automation – the inverted pyramid, or ice-cream cone.</p>
-        <p>
-          This situation occurs where too much emphasis is placed on automated GUI & manual tests which may occur
-          for numerous reasons such as lack of experience in writing lower level tests or working with legacy code.
-        </p>
+        <p>Muita ênfase em automação de testes de UI e testes <b>manuais</b></p>
+        <p><b>Falta de experiência</b> em escrever testes de nível mais baixo ou trabalhar com <b>código legado</b></p>
       </section>
     </aside>
     <hgroup>
       <h2>Testes de software</h2>
-      <h3>Automação</h3>
     </hgroup>
     <article class="centered">
-      <img src="images/test-cone.png" style="height: 350px">
+      <img src="images/test-cone.png" style="height: 500px">
     </article>
   </slide>
 
   <slide>
     <hgroup>
       <h2>Testes de software</h2>
-      <h3>Automação</h3>
     </hgroup>
     <article class="centered">
       <img src="images/test-pyramid.png">
@@ -165,45 +160,44 @@ URL: https://code.google.com/p/io-2012-slides
   <slide>
     <hgroup>
       <h2>Testes de software</h2>
-      <h3>Automação</h3>
     </hgroup>
     <article class="centered">
-      <img src="images/test-pyramid-cone.png" style="height: 450px;">
+      <img src="images/test-pyramid-cone.png" style="height: 500px;">
     </article>
   </slide>
 
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
     <aside class="note">
-      <ul>
-        <li>Pequenos trechos de código</li>
-        <li>Escritos na mesma linguagem do produto</li>
-        <li>Com o objetivo de testar a menor unidade do software</li>
-      </ul>
+      <section>
+        <p><b>&gt; 10min</b></p>
+        <ul>
+          <li>Pequenos trechos de código</li>
+          <li>Escritos na mesma linguagem do produto</li>
+          <li>Com o objetivo de testar a menor unidade do software</li>
+        </ul>
+      </section>
     </aside>
     <hgroup class="auto-fadein">
       <h2>Testes de unidade</h2>
-      <h3>
-        O que são? <span class="removed">De que se alimentam? Como sobrevivem?</span>
+      <h3 class="build">
+        <span>O que são?</span>
+        <span class="removed">Onde vivem?</span>
+        <span class="removed">De que se alimentam?</span>
       </h3>
     </hgroup>
   </slide>
 
   <slide>
     <aside class="note">
-    <section>
-      <p>
-        Pequenos trechos de código (por programadores <b>para programadores</b>!),
-        escritos na mesma linguagem do produto, com o objetivo de testar a menor unidade
-        do software (um método <span class="removed">ou função</span>)
-      </p>
-    </section>
+      <section>
+        <p>Os exemplos de código serão em <b>PHP</b></p>
+      </section>
     </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
     </hgroup>
     <article>
-
       <pre class="prettyprint" data-lang="php">
 interface CalculatorInterface {
   <b>public function sum($first, $second);</b>
@@ -231,15 +225,15 @@ class CalculatorTest {
       <h3>Por quê?</h3>
     </hgroup>
     <article>
-      <ul>
+      <ul class="build">
         <li>Software livre de defeitos <b>deveria ser</b> sempre entregue</li>
-        <li class="build">
+        <li>
           Mas...
           <ul class="build">
             <li>software é muito complexo</li>
             <li>pessoas são imperfeitas! ><"</li>
+            <p class="centered"><img src="images/shit-happens.jpg" alt="s**t happens" title="s**t happens"></p>
           </ul>
-          <p class="centered"><img src="images/shit-happens.jpg" alt="s**t happens" title="s**t happens"></p>
         </li>
       </ul>
     </article>
@@ -257,7 +251,7 @@ class CalculatorTest {
     </article>
   </slide>
 
-  <slide>
+  <slide class="nobackground">
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Por quê?</h3>
@@ -268,6 +262,7 @@ class CalculatorTest {
 interface PersonInterface {
     public function canBeArrested();
 }
+
 class Person implements PersonInterface {
     <b>public function __construct($age);</b>
     /*...*/
@@ -282,7 +277,7 @@ class Person implements PersonInterface {
     </article>
   </slide>
 
-  <slide>
+  <slide class="nobackground">
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Por quê?</h3>
@@ -290,10 +285,11 @@ class Person implements PersonInterface {
     <article>
       <p>Ampliar a capacidade de análise do todo</p>
       <pre class="prettyprint" data-lang="php">
-interface PersonInterface {
+interface PersonInterface { /*...*/ }
+class Person implements PersonInterface {
     <b>public function __construct($age);</b>
+    /*...*/
 }
-class Person implements PersonInterface { /*...*/ }
 
 interface PoliceInterface {
     <b>public function arrest(PersonInterface $person);</b>
@@ -308,6 +304,12 @@ $police->arrest(new Person(19));</b>
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <p>Quem nunca imprimiu resultados intermediários?</p>
+        <p>"Passei por aqui" em instruções de controle?</p>
+      </section>
+    </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
@@ -330,6 +332,11 @@ sum(1, 0) = 1 [1]
   </slide>
 
   <slide>
+    <aside class="note">
+      <section>
+        <p><b>Debugar</b> também é uma forma de verificação manual</p>
+      </section>
+    </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
       <h3>Como?</h3>
@@ -355,10 +362,16 @@ sum(1, 0) = 1 [1]
   </slide>
 
   <slide class="nobackground">
+    <aside class="note">
+      <section>
+        <p>Forma pseudomanual</p>
+        <p>~Automática~</p>
+      </section>
+    </aside>
     <hgroup>
       <h2>Testes de unidade</h2>
     </hgroup>
-    <article>
+    <article class="build">
       <pre class="prettyprint" data-lang="php">
 1  &lt;?php
 2  function sum($a, $b) {
@@ -378,6 +391,36 @@ Stack trace:
 <b>#0 sumTest.php(11): sumTest(1, 0, 1)</b>
 #1 {main}
   <b>thrown in sumTest.php on line 8</b></pre>
+    </article>
+  </slide>
+
+  <slide class="nobackground">
+    <aside class="note">
+      <section>
+        <p>Um framework de testes é um conjunto de ferramentas que agilizam e automatizam a criação de testes</p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Testes de unidade</h2>
+      <h3>Como?</h3>
+    </hgroup>
+    <article class="build">
+      <p>Usando um framework de testes</p>
+      <pre class="prettyprint" data-lang="php">
+class Calculator {
+    public function sum($a, $b) {
+        return $a + $b;
+    }
+}
+
+class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
+    /** @test */
+    public function sumTest() {
+        <b>$this->assertSame(0, sum(0, 0));
+        $this->assertSame(1, sum(1, 0));
+        $this->assertSame(1, sum(0, 1));</b>
+    }
+}</pre>
     </article>
   </slide>
 
@@ -424,31 +467,6 @@ Stack trace:
   </slide>
 
   <slide>
-    <hgroup>
-      <h2>Testes de unidade</h2>
-      <h3>Como?</h3>
-    </hgroup>
-    <article>
-      <p>Usando um framework de testes</p>
-      <pre class="prettyprint" data-lang="php">
-class Calculator {
-    public function sum($a, $b) {
-        return $a + $b;
-    }
-}
-
-class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
-    /** @test */
-    public function sumTest() {
-        <b>$this->assertSame(0, sum(0, 0));
-        $this->assertSame(1, sum(1, 0));
-        $this->assertSame(1, sum(0, 1));</b>
-    }
-}</pre>
-    </article>
-  </slide>
-
-  <slide>
     <aside class="note">
       <section>
         <ul>
@@ -477,6 +495,7 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
   <slide>
     <aside class="note">
       <section>
+        <p>&gt; 30min/p>
         <p>Fakes: apenas implementam a interface</p>
         <p>Mocks: verificam contexto da chamada e altera saída</p>
         <p>Stubs (<b>toco</b>): métodos para imitir comportamento</p>
@@ -531,7 +550,6 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
       <section>
         <p>Funcionalidades legadas - Código legado (sem testes)</p>
         <ul>
-          <li>Antes de acrescentar uma nova funcionalidade</li>
           <li>Sempre que for necessário fazer uma alteração em uma classe</li>
           <li>O quanto antes!</li>
         </ul>
@@ -554,12 +572,6 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
     <aside class="note">
       <section>
         <p>Abordagem do tipo "test-first"</p>
-        <p>Princípios</p>
-        <ul>
-          <li>KISS: Keep It Simple, Stupid</li>
-          <li>YAGNI: You Aren't Gonna Need It</li>
-          <li>Fake it till you make it</li>
-        </ul>
       </section>
     </aside>
     <hgroup class="auto-fadein">
@@ -570,10 +582,11 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
   <slide>
     <hgroup>
       <h2>Test-driven development (TDD)</h2>
+      <h3>Princípios</h3>
     </hgroup>
     <article class="flexbox vcenter">
-        <h3><b>K</b>eep <b>I</b>t <b>S</b>imple, <b>S</b>tupid (KISS)</h3>
-        <h3><b>Y</b>ou <b>A</b>ren't <b>G</b>onna <b>N</b>eed <b>I</b>t (YAGNI)</h3>
+        <h3 class="build"><span>KISS</span><span>: <b>K</b>eep <b>I</b>t <b>S</b>imple, <b>S</b>tupid</span></h3>
+        <h3 class="build"><span>YAGNI</span><span>: <b>Y</b>ou <b>A</b>ren't <b>G</b>onna <b>N</b>eed <b>I</b>t</span></h3>
     </article>
   </slide>
 
@@ -604,7 +617,7 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
       <h2>Test-driven development (TDD)</h2>
       <h3>1. Escrever um teste</h3>
     </hgroup>
-    <article>
+    <article class="build">
       <pre class="prettyprint" data-lang="php">
 class CalculatorTest extends PHPUnit_Framework_TestCase
 {
@@ -623,17 +636,18 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
       <h2>Test-driven development (TDD)</h2>
       <h3>2. Garantir que o novo teste <b>falha</b></h3>
     </hgroup>
-    <article>
-      <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
-    test/CalculatorTest.php
-PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+    <article class="build">
+      <pre class="terminal build">
+$ <span>./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php</span>
+<span>PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 .
 
 Time: 75 ms, Memory: 2.75Mb
 
-<b>OK (1 test, 0 assertions)</b></pre>
+<b>OK (1 test, 0 assertions)</b></span></pre>
+      <img src="images/wrong.gif" style="position: absolute; bottom: 250px; right: 60px;">
     </article>
   </slide>
 
@@ -642,7 +656,7 @@ Time: 75 ms, Memory: 2.75Mb
       <h2>Test-driven development (TDD)</h2>
       <h3>2. Garantir que o novo teste <b>falha</b></h3>
     </hgroup>
-    <article>
+    <article class="build">
       <pre class="prettyprint" data-lang="php">
 class CalculatorTest extends PHPUnit_Framework_TestCase
 {
@@ -662,18 +676,18 @@ class CalculatorTest extends PHPUnit_Framework_TestCase
       <h2>Test-driven development (TDD)</h2>
       <h3>2. Garantir que o novo teste <b>falha</b></h3>
     </hgroup>
-    <article>
-      <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
-    test/CalculatorTest.php
-PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+    <article class="build">
+      <pre class="terminal build">
+$ <span>./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php</span>
+<span>PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 <b>PHP Fatal error:
   Class 'TFurtado\UnitTestSample\Calculator' not found
   in .../test/CalculatorTest.php on line 19</b>
 PHP Stack trace:
 PHP   1. {main}() ./vendor/phpunit/phpunit/phpunit:0
-    ...</pre>
+    ...</span></pre>
     </article>
   </slide>
 
@@ -685,7 +699,7 @@ PHP   1. {main}() ./vendor/phpunit/phpunit/phpunit:0
       <h2>Test-driven development (TDD)</h2>
       <h3>3. Escrever código</h3>
     </hgroup>
-    <article>
+    <article class="build">
       <pre class="prettyprint" data-lang="php">
 class Calculator
 {
@@ -700,16 +714,16 @@ class Calculator
       <h3>4. Garantir que os testes <b>passam</b></h3>
     </hgroup>
     <article>
-      <pre class="terminal">
-$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
-    test/CalculatorTest.php
-PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+      <pre class="terminal build">
+$ <span>./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php</span>
+<span>PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 
 .
 
 Time: 65 ms, Memory: 2.75Mb
 
-<b>OK (1 test, 0 assertions)</b></pre>
+<b>OK (1 test, 0 assertions)</b></span></pre>
     </article>
   </slide>
 
@@ -980,6 +994,7 @@ PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
 Time: 87 ms, Memory: 2.75Mb
 
 OK (1 test, 1 assertion)</pre>
+      <img src="images/ok2.png" style="bottom: 50px; position: absolute; right: 20px; width: 30%;">
     </article>
   </slide>
 
@@ -995,17 +1010,19 @@ OK (1 test, 1 assertion)</pre>
 
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <aside class="note">
+      <section>
+        <p>&gt; 45min</p>
+      </section>
+    </aside>
     <hgroup class="auto-fadein">
       <h2>Cobertura de testes</h2>
     </hgroup>
   </slide>
 
   <slide>
-    <hgroup>
-      <h2>Cobertura de testes</h2>
-    </hgroup>
     <article class="flexbox vcenter">
-      <h3 class="centered" style="line-height: 1.2;">Quanto do software deve estar coberto por testes de unidade?</h3>
+      <h2 class="centered" style="line-height: 1.2;">Quanto do software deve estar coberto por testes de unidade?</h2>
       <div class="build centered">
         <h3>100%!</h3> <h3>TODO!</h3> <h3>O software INTEIRO!</h3>
         <p style="font-size: 0.8em; margin: 10px;">Deu pra endenter, né?</p>
@@ -1024,7 +1041,7 @@ OK (1 test, 1 assertion)</pre>
       </section>
     </aside>
     <article class="flexbox vcenter">
-      <h2>Como garantir 100% de cobertura de testes?</h2>
+      <h2 class="centered">Como garantir 100% de cobertura de testes?</h2>
     </article>
   </slide>
 
