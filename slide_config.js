@@ -1,7 +1,7 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'Testes de Unidade na prática',
+    title: 'Testes de unidade na prática',
     subtitle: 'Por quê? Quando? Como?',
     eventTitle: 'XVII SECCOM',
     useBuilds: true, // Default: true. False will turn off slide animation builds.

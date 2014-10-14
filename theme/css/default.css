@@ -861,8 +861,13 @@ article.smaller q:before, article.smaller q:after {
   opacity: 1.0;
 }
 
+.popup .current .build .to-build {
+  opacity: 0.5;
+}
+
 /* line 617, ../scss/default.scss */
-.popup .next .build .to-build {
+.popup .next .build .to-build,
+.popup .next .auto-fadein {
   opacity: 1;
 }
 /* line 621, ../scss/default.scss */
