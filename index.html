@@ -92,17 +92,19 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
-    <aside class="note">
-      <section>
-        <p>Antes, é preciso falar de TESTES</p>
-      </section>
-    </aside>
+
     <hgroup class="auto-fadein">
       <h2>Testes de unidade</h2>
     </hgroup>
   </slide>
 
   <slide class="fill nobackground" style="background-image: url(images/what.gif)">
+    <aside class="note">
+      <section>
+        <p>Antes, é preciso falar de TESTES</p>
+      </section>
+    </aside>
+    <article></article>
   </slide>
 
   <slide class="segue dark nobackground">
@@ -111,6 +113,7 @@ URL: https://code.google.com/p/io-2012-slides
       <section>
         <p>O que é teste? Teste é uma forma de avaliar a funcionalidade do software</p>
         <p>Ajuda na construção, mas <b>não garante</b> qualidade</p>
+        <p>Feito em vários níveis</p>
       </section>
     </aside>
     <hgroup class="auto-fadein">
@@ -171,26 +174,19 @@ URL: https://code.google.com/p/io-2012-slides
 
   <slide class="segue dark nobackground">
     <aside class="gdbar"><img src="images/meritt_icon_128.png"></aside>
+    <aside class="note">
+      <ul>
+        <li>Pequenos trechos de código</li>
+        <li>Escritos na mesma linguagem do produto</li>
+        <li>Com o objetivo de testar a menor unidade do software</li>
+      </ul>
+    </aside>
     <hgroup class="auto-fadein">
       <h2>Testes de unidade</h2>
       <h3>
         O que são? <span class="removed">De que se alimentam? Como sobrevivem?</span>
       </h3>
     </hgroup>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h2>Testes de unidade</h2>
-      <h3>O quê?</h3>
-    </hgroup>
-    <article>
-      <ul>
-        <li>Pequenos trechos de código</li>
-        <li>Escritos na mesma linguagem do produto</li>
-        <li>Com o objetivo de testar a menor unidade do software</li>
-      </ul>
-    </article>
   </slide>
 
   <slide>
@@ -269,9 +265,12 @@ class CalculatorTest {
     <article>
       <p>Garantir a correção das partes</p>
       <pre class="prettyprint" data-lang="php">
-class Person {
-    <b>public function __construct($age) { /*...*/ }</b>
-    public function canBeArrested() { /*...*/ }
+interface PersonInterface {
+    public function canBeArrested();
+}
+class Person implements PersonInterface {
+    <b>public function __construct($age);</b>
+    /*...*/
 }
 
 (new Person(17))->canBeArrested();
@@ -470,11 +469,21 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
   </slide>
 
   <slide class="meritt-dark">
-    <hgroup>
-      <h2>Testes de unidade</h2>
-    </hgroup>
     <article class="flexbox vcenter">
-      <h3>E quando um objeto interage com outro?</h3>
+      <h2>E quando um objeto interage com outro?</h2>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+        <p>Fakes: apenas implementam a interface</p>
+        <p>Mocks: verificam contexto da chamada e altera saída</p>
+        <p>Stubs (<b>toco</b>): métodos para imitir comportamento</p>
+      </section>
+    </aside>
+    <article class="flexbox vcenter">
+      <h2>Objetos dublês!</h2>
     </article>
   </slide>
 
@@ -483,7 +492,6 @@ class CalculatorTest <b>extends PHPUnit_Framework_TestCase</b> {
       <h2>Testes de unidade</h2>
     </hgroup>
     <article>
-      <p>Objetos dublês (mocks, stubs, fakes...)</p>
       <pre class="prettyprint" data-lang="php">
 class Police implements PoliceInterface {
     public function arrest(<b>PersonInterface $person</b>) {
@@ -555,8 +563,18 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
       </section>
     </aside>
     <hgroup class="auto-fadein">
-      <h2>Test-driven development</h2>
+      <h2 style="line-height: 1.15;">TDD<br>Test-driven development</h2>
     </hgroup>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+    </hgroup>
+    <article class="flexbox vcenter">
+        <h3><b>K</b>eep <b>I</b>t <b>S</b>imple, <b>S</b>tupid (KISS)</h3>
+        <h3><b>Y</b>ou <b>A</b>ren't <b>G</b>onna <b>N</b>eed <b>I</b>t (YAGNI)</h3>
+    </article>
   </slide>
 
   <slide>
@@ -571,18 +589,14 @@ class PoliceTest extends PHPUnit_Framework_TestCase {
           <li>5. Refatorar o código</li>
           <li>6. Repetir</li>
         </ol>
-        <p>A seguir, exemplo deste ciclo</p>
       </section>
     </aside>
     <hgroup>
       <h2>Test-driven development (TDD)</h2>
     </hgroup>
     <article class="centered">
-      <img src="images/tdd-cycle.png" alt="Test-driven development" style="height: 50%;">
+      <img src="images/tdd-cycle.png" alt="Test-driven development" style="height: 500px;">
     </article>
-    <footer class="source">
-      Créditos da imagem: "<a href="http://commons.wikimedia.org/wiki/File:Test-driven_development.PNG#mediaviewer/File:Test-driven_development.PNG">Test-driven development</a>". Via <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>.
-    </footer>
   </slide>
 
   <slide>
@@ -712,7 +726,7 @@ Time: 65 ms, Memory: 2.75Mb
   <slide>
     <hgroup>
       <h2>Test-driven development (TDD)</h2>
-      <h3>6. Repetir</h3>
+      <h3>Repetir...</h3>
     </hgroup>
     <article class="centered">
       <img src="images/againagain.gif" style="height: 420px">
@@ -771,7 +785,7 @@ class Calculator
 {
     <b>public function sum($a, $b)
     {
-        $sum = $a + $b;
+        $sum = 3;
         return $sum;
     }</b>
 }</pre>
@@ -809,8 +823,141 @@ class Calculator
 {
     public function sum($a, $b)
     {
-        <span class="removed">$sum = $a + $b;</span>
+        <span class="removed">$sum = 3;</span>
         <span class="removed">return $sum;</span>
+        <b>return 3</b>;
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>5. Refatorar o código</h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+.
+
+Time: 87 ms, Memory: 2.75Mb
+
+OK (1 test, 1 assertion)</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>Repetir...</h3>
+    </hgroup>
+    <article class="centered">
+      <img src="images/tdd-cycle-simple.jpg" style="height: 420px">
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>1. Escrever um teste</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class CalculatorTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * @test
+     */
+    public function sumTest()
+    {
+        $calculator = new Calculator();
+        $this->assertSame(3, $calculator->sum(1, 2));
+        <b>$this->assertSame(4, $calculator->sum(2, 2));</b>
+    }
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>2. Garantir que o novo teste <b>falha</b></h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+<b>F</b>
+Time: 76 ms, Memory: 3.00Mb
+<b>There was 1 failure:
+
+1) TFurtado\UnitTestSample\CalculatorTest::sumTest
+Failed asserting that 3 is identical to 4.
+
+.../test/CalculatorTest.php:21
+
+FAILURES!
+Tests: 1, Assertions: 2, Failures: 1.</b></pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>3. Escrever código</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class Calculator
+{
+    <b>public function sum($a, $b)
+        {
+            <span class="removed">return 3;</span>
+            $sum = $a + $b;
+            return $sum;
+        }</b>
+}</pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>4. Garantir que os testes <b>passam</b></h3>
+    </hgroup>
+    <article>
+      <pre class="terminal">
+$ ./vendor/bin/phpunit --bootstrap ./vendor/autoload.php
+    test/CalculatorTest.php
+PHPUnit 4.5-gf75e6b2 by Sebastian Bergmann.
+
+.
+
+Time: 90 ms, Memory: 2.75Mb
+
+<b>OK (1 test, 2 assertions)</b></pre>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Test-driven development (TDD)</h2>
+      <h3>5. Refatorar o código</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="php">
+class Calculator
+{
+    public function sum($a, $b)
+    {
+        <span class="removed">$sum = $a + $b;</span>
+        <span class="removed">return $sum</span>;
         <b>return $a + $b</b>;
     }
 }</pre>
@@ -839,7 +986,7 @@ OK (1 test, 1 assertion)</pre>
   <slide>
     <hgroup>
       <h2>Test-driven development (TDD)</h2>
-      <h3>6. Repetir</h3>
+      <h3>Repetir...</h3>
     </hgroup>
     <article class="centered">
       <img src="images/repetir.gif" style="height: 420px">
